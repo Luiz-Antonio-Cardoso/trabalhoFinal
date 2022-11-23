@@ -85,15 +85,30 @@ def cadastro_manutencao():
 
 def realiza_manutencao():
 
-    print("\n-----REALIZAR MANUTENÇÃO-----")
+    countManutencao = 0
+
+    print('\n-----REALIZAR MANUTENÇÃO-----')
     cpfPesquisa = int(input('\nDigite o CPF (apenas números) associados a manutenção que você deseja pesquisar: \n'))
 
-    query = conn.execute("SELECT COUNT() FROM manutencao WHERE cpf = {0}".format(cpfPesquisa))
+    query = conn.execute('SELECT COUNT() FROM manutencao WHERE cpf = {0}'.format(cpfPesquisa))
 
     for i in query:
-        print(i[0])
+        countManutencao = i[0]
 
+    if countManutencao == 1:
+        query = conn.execute('''UPDATE manutencao
+                                set status = 'M'
+                                WHERE cpf = {0}'''.format(cpfPesquisa))
+        print('Manutenção atualiza para status = "M"')
+    elif countManutencao > 1:
+        #select
+        escolha = int(input('\nEscolha uma das manutenções para dar entrada: '))
+        #restante
+    else:
+        print('\nNão existem manutenção registradas nesse CPF!')
     
+    return countManutencao
+
 #endregion === FIM REALIZAR MANUTENÇÃO ===
 
 #region ===MENU PRINCIPAL===

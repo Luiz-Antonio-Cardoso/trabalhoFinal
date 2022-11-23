@@ -81,7 +81,20 @@ def cadastro_manutencao():
     return cadastro
 #endregion
 
-#region ==MENU PRINCIPAL====
+#region ===REALIZAR MANUTENÇÃO===
+
+def realiza_manutencao():
+    print("\n-----REALIZAR MANUTENÇÃO-----")
+    cpfPesquisa = int(input('\nDigite o CPF (apenas números) associados a manutenção que você deseja pesquisar: '))
+
+    selecManutencao = conn.execute("SELECT COUNT(status) FROM MANUTENCAO WHERE cpf = {0}".format(cpfPesquisa))
+    conn.commit()
+
+    print(selecManutencao.fetchall())
+
+#endregion === FIM REALIZAR MANUTENÇÃO ===
+
+#region ===MENU PRINCIPAL===
 def menu_principal():
 
     op = True
@@ -95,10 +108,10 @@ def menu_principal():
         opcao = int(input('Digite uma das opções: '))
         if (opcao == 1):
             cadastro_manutencao()
-        # elif(opcao == 2):
+        #elif(opcao == 2):
         #   altera_manutencao()
-        # elif(opcao == 3):
-        #   realiza_manutencao()
+        elif(opcao == 3):
+           realiza_manutencao()
         # elif(opcao == 4):
         #   finaliza_manutencao()
         # elif(opcao == 5):

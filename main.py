@@ -87,11 +87,17 @@ def realiza_manutencao():
     print("\n-----REALIZAR MANUTENÇÃO-----")
     cpfPesquisa = int(input('\nDigite o CPF (apenas números) associados a manutenção que você deseja pesquisar: '))
 
-    selecManutencao = conn.execute("SELECT COUNT(status) FROM MANUTENCAO WHERE cpf = {0}".format(cpfPesquisa))
-    conn.commit()
+    query = "SELECT COUNT() FROM manutencao WHERE cpf = {0}".format(cpfPesquisa)
+    query = query.replace("[", "")
+    query = query.replace("]", "")
+    query = query.replace("(", "")
+    query = query.replace(")", "")
+    query = query.replace(",", "")
 
-    print(selecManutencao.fetchall())
-
+    conn.execute(query)
+    print(query.fetchall())
+    
+    conn.commit() 
 #endregion === FIM REALIZAR MANUTENÇÃO ===
 
 #region ===MENU PRINCIPAL===

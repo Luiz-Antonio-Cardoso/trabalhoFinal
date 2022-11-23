@@ -84,20 +84,16 @@ def cadastro_manutencao():
 #region ===REALIZAR MANUTENÇÃO===
 
 def realiza_manutencao():
+
     print("\n-----REALIZAR MANUTENÇÃO-----")
-    cpfPesquisa = int(input('\nDigite o CPF (apenas números) associados a manutenção que você deseja pesquisar: '))
+    cpfPesquisa = int(input('\nDigite o CPF (apenas números) associados a manutenção que você deseja pesquisar: \n'))
 
-    query = "SELECT COUNT() FROM manutencao WHERE cpf = {0}".format(cpfPesquisa)
-    query = query.replace("[", "")
-    query = query.replace("]", "")
-    query = query.replace("(", "")
-    query = query.replace(")", "")
-    query = query.replace(",", "")
+    query = conn.execute("SELECT COUNT() FROM manutencao WHERE cpf = {0}".format(cpfPesquisa))
 
-    conn.execute(query)
-    print(query.fetchall())
+    for i in query:
+        print(i[0])
+
     
-    conn.commit() 
 #endregion === FIM REALIZAR MANUTENÇÃO ===
 
 #region ===MENU PRINCIPAL===

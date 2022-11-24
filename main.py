@@ -9,7 +9,7 @@ cursor = conn.cursor()
 
 aux = True
 
-if aux == False:
+if aux == True:
 
   cursor.execute('''CREATE TABLE manutencao (
                     id INTEGER PRIMARY KEY NOT NULL,
@@ -26,6 +26,14 @@ if aux == False:
   aux = True
 
 #endregion
+
+#region === função formatar query ===
+def formatQuery(query):
+    format = 0
+    for i in query:
+        format = i[0]
+    return format
+#endregion 
 
 #region === função de sair do programa ===
 
@@ -91,8 +99,10 @@ def realiza_manutencao():
 
     query = conn.execute('SELECT COUNT() FROM manutencao WHERE cpf = {0}'.format(cpfPesquisa))
 
-    for i in query:
-        countManutencao = i[0]
+    countManutencao = formatQuery(query)
+
+    print('TESTE FUNCAO FORMAT {0}'.format(countManutencao))
+    print('cpf pesquisa {0}'.format(cpfPesquisa))
 
     if countManutencao == 1:
         query = conn.execute('''UPDATE manutencao
@@ -101,7 +111,24 @@ def realiza_manutencao():
         print('Manutenção atualiza para status = "M"')
     elif countManutencao > 1:
         #select
-        escolha = int(input('\nEscolha uma das manutenções para dar entrada: '))
+        query = []
+        id = []
+        query = conn.execute('SELECT id, detalhe, tipoVeiculo, valor, descricao FROM manutencao WHERE cpf = {0}'.format(cpfPesquisa))
+        id = conn.execute('SELECT id FROM manutencao WHERE cpf = {0}'.format(cpfPesquisa))
+        print(query.fetchall())
+        escolha = int(input('\nEscolha uma das manutenções para dar entrada (ID - primeiro valor): '))
+
+        queryFormatada = formatQuery(query)
+        print(escolha in queryFormatada)
+
+        if escolha in id:
+            conn.execute('''UPDATE manutencao
+                                set status = 'M'
+                                WHERE 
+                                id = {0} and 
+                                cpf = {1}'''.format(cpfPesquisa))
+            print('Manutenção atualiza para status = "M"')
+
         #restante
     else:
         print('\nNão existem manutenção registradas nesse CPF!')

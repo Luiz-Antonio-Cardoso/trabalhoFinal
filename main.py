@@ -3,14 +3,13 @@ import sqlite3
 
 #region=== Variáveis/Banco - ESCOPO GLOBAL ===
 ##declara tudo o que for global AQUI
+conn = sqlite3.connect("db-oficina")
 
-aux = False
+cursor = conn.cursor()
+
+aux = True
 
 if aux == False:
-
-  conn = sqlite3.connect("db-oficina")
-
-  cursor = conn.cursor()
 
   cursor.execute('''CREATE TABLE manutencao (
                     id INTEGER PRIMARY KEY NOT NULL,

@@ -20,8 +20,8 @@ if aux == False:
                     detalhe NVARCHAR(200) NOT NULL,
                     valor FLOAT NOT NULL,
                     descricao NVARCHAR (200) NOT NULL,
-                    dataEntrada DATETIME NOT NULL,
-                    dataSaida DATETIME NOT NULL,
+                    dataEntrada DATE NOT NULL,
+                    dataSaida DATE NOT NULL,
                     status NVARCHAR(1) NOT NULL
                   );''')
   aux = True

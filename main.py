@@ -1,12 +1,8 @@
 # imports
-from app.alterarManutencao import altera_manutencao
-from app.cadastroManutencao import cadastro_manutencao
-from app.menuPrincipal import realiza_manutencao
-from utilities.exit import sair
-from database.createTables import *
-from utilities.formatQuery import formatQuery
-# end imports
 
+from app.facade import *
+from database.createTables import criarTabela
+from utilities.facade import *
 
 criarTabela()
 
@@ -27,10 +23,10 @@ def menu_principal():
             altera_manutencao()
         elif (opcao == 3):
             realiza_manutencao()
-        # elif(opcao == 4):
-        #   finaliza_manutencao()
-        # elif(opcao == 5):
-        #   relatorios()
+        elif(opcao == 4):
+          finaliza_manutencao()
+        elif(opcao == 5):
+          relatorios()
         elif (opcao == 6):
             sair()
         else:
@@ -38,5 +34,3 @@ def menu_principal():
 
 
 menu_principal()
-
-# endregion

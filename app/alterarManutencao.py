@@ -1,5 +1,6 @@
 from database.createTables import conn
-from formatQuery import formatQuery
+from utilities.facade import *
+
 def altera_manutencao():
     print('\n-----ALTERAR MANUTENÇÃO-----')
     cpfPesquisa = int(input(

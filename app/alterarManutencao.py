@@ -1,5 +1,5 @@
 from database.createTables import conn
-from utilities.facade import *
+from utilities.formatQuery import formatQuery
 
 def altera_manutencao():
     print('\n-----ALTERAR MANUTENÇÃO-----')

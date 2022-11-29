@@ -1,5 +1,5 @@
 from database.createTables import *
-from utilities.facade import *
+from utilities.formatQuery import formatQuery
 
 def finaliza_manutencao():
 

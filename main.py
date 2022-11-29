@@ -1,8 +1,14 @@
 # imports
+from app.alterarManutencao import altera_manutencao
+from app.cadastroManutencao import cadastro_manutencao 
+from app.finalizarManutencao import finaliza_manutencao
+from app.realizarManutencao import  realiza_manutencao 
+from app.relatorios import relatorios
 
-from app.facade import *
 from database.createTables import criarTabela
-from utilities.facade import *
+
+from utilities.exit import sair
+
 
 criarTabela()
 

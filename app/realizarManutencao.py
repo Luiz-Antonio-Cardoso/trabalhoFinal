@@ -1,38 +1,36 @@
 import sys
 sys.path.append('./')
 from database.createTables import *
-from utilities.formatQuery import formatQuery
+from utilities.formatQuery import *
 def realiza_manutencao():
 
     countManutencao = 0
 
     print('\n-----REALIZAR MANUTENÇÃO-----')
-    cpfPesquisa = int(input(
-        '\nDigite o CPF (apenas números) associados a manutenção que você deseja pesquisar: \n'))
+    
+    cpfPesquisa = input('\nDigite o CPF (apenas números) associados a manutenção que você deseja pesquisar: \n')
 
-    query = conn.execute(
-        'SELECT COUNT() FROM manutencao WHERE cpf = {0}'.format(cpfPesquisa))
-
+    print(cpfPesquisa)
+    query = conn.execute('SELECT COUNT(*) FROM manutencao WHERE cpf = "{0}"'.format(cpfPesquisa))
+    print(query.fetchall())
     countManutencao = formatQuery(query)
-
-    print('TESTE FUNCAO FORMAT {0}'.format(countManutencao))
-    print('cpf pesquisa {0}'.format(cpfPesquisa))
 
     if countManutencao == 1:
         query = conn.execute('''UPDATE manutencao
                                 set status = 'M'
                                 WHERE cpf = {0}'''.format(cpfPesquisa))
+                                
         print('Manutenção atualiza para status = "M"')
     elif countManutencao > 1:
         # select
         query = []
-        id = []
-        query = conn.execute(
-            'SELECT id, detalhe, tipoVeiculo, valor, descricao, status FROM manutencao WHERE cpf = {0}'.format(cpfPesquisa))
+        query = conn.execute('SELECT id, detalhe, tipoVeiculo, valor, descricao, status FROM manutencao WHERE cpf = {0}'.format(cpfPesquisa))
+
         for row in query:
             print(row)
-        query = conn.execute(
-            'SELECT detalhe, tipoVeiculo, valor, descricao, nome FROM manutencao')
+
+        query = conn.execute('SELECT detalhe, tipoVeiculo, valor, descricao, nome FROM manutencao')
+
         for row in query.fetchall():
             valores = {}
             querys = []

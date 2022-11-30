@@ -7,11 +7,9 @@ def realiza_manutencao():
     countManutencao = 0
 
     print('\n-----REALIZAR MANUTENÇÃO-----')
-    cpfPesquisa = int(input(
-        '\nDigite o CPF (apenas números) associados a manutenção que você deseja pesquisar: \n'))
+    cpfPesquisa = input('\nDigite o CPF (apenas números) associados a manutenção que você deseja pesquisar: \n')
 
-    query = conn.execute(
-        'SELECT COUNT() FROM manutencao WHERE cpf = {0}'.format(cpfPesquisa))
+    query = conn.execute('SELECT COUNT(*) FROM manutencao WHERE cpf = "{0}"'.format(cpfPesquisa))
 
     countManutencao = formatQuery(query)
 
@@ -25,14 +23,16 @@ def realiza_manutencao():
         print('Manutenção atualiza para status = "M"')
     elif countManutencao > 1:
         # select
-        query = []
-        id = []
+        query = []        
         query = conn.execute(
             'SELECT id, detalhe, tipoVeiculo, valor, descricao, status FROM manutencao WHERE cpf = {0}'.format(cpfPesquisa))
+
         for row in query:
             print(row)
+
         query = conn.execute(
             'SELECT detalhe, tipoVeiculo, valor, descricao, nome FROM manutencao')
+            
         for row in query.fetchall():
             valores = {}
             querys = []

@@ -1,3 +1,5 @@
+import sys
+sys.path.append('./')
 from database.createTables import *
 
 def cadastro_manutencao():

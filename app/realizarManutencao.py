@@ -1,3 +1,5 @@
+import sys
+sys.path.append('./')
 from database.createTables import *
 from utilities.formatQuery import formatQuery
 def realiza_manutencao():

@@ -4,25 +4,23 @@ from app.cadastroManutencao import cadastro_manutencao
 from app.finalizarManutencao import finaliza_manutencao
 from app.realizarManutencao import  realiza_manutencao 
 from app.relatorios import relatorios
+from utilities.Menu import menu
 
 from database.createTables import criarTabela
-
 from utilities.exit import sair
 
 
-criarTabela()
+# criarTabela()
 
-def menu_principal():
+def menu_principal():   
 
     op = True
     while op == True:
-        print('\n-----MENU PRINCIPAL-----')
-        print('\nSelecione as seguintes opções para prosseguir:')
-        print('1 - Cadastrar manutenção \n2 - Alterar manutenção')
-        print('3 - Realizar manutenção \n4 - Finalizar manutenção')
-        print('5 - Relatórios \n6 - Sair')
+        
+        opcoes_menu = ['Cadastrar manutenção', 'Alterar manutenção', 'Realizar manutenção', 'Finalizar manutenção', 'Relatórios', 'Sair']
+        nome = "MENU PRINCIPAL"
+        opcao = menu(opcoes_menu, nome)
 
-        opcao = int(input('Digite uma das opções: '))
         if (opcao == 1):
             cadastro_manutencao()
         elif (opcao == 2):

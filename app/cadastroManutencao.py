@@ -46,6 +46,6 @@ def cadastro_manutencao():
             "Os campos:\n Nome,\n cpf,\n detalhe,\n valor,\n data de entrada\n são obrigatorios, tente novamente.")
 
     selectManutencao = conn.execute("SELECT * FROM manutencao")
-    print(selectManutencao.fetchall())
+    # print(selectManutencao.fetchall())
 
     return cadastro

@@ -17,7 +17,7 @@ def realiza_manutencao():
     listaManutencoesCpf = query.fetchall()
 
     if checa_tamanho(listaManutencoesCpf):
-        pos = int(menu(listaManutencoesCpf, nome))
+        pos = menu(listaManutencoesCpf, nome)
         id = retorna_id(listaManutencoesCpf, pos)
     else:
         id = retorna_id(listaManutencoesCpf, 1)

@@ -10,7 +10,7 @@ from database.createTables import criarTabela
 from utilities.exit import sair
 
 
-# criarTabela()
+#criarTabela()
 
 def menu_principal():   
 

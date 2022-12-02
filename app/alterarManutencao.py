@@ -15,12 +15,6 @@ def altera_manutencao():
     nome = 'ALTERAR MANUTENÇÃO'
     
     cpfPesquisa = int(menu([], nome, 'Digite o CPF (apenas números) associados a manutenção que você deseja pesquisar: '))
-
-    # query seleção pelo CPF
-    query = conn.execute(
-        'SELECT COUNT() FROM manutencao WHERE cpf = {0}'.format(cpfPesquisa))
-
-
         
     query = conn.execute(
             'SELECT id, nome, detalhe, tipoVeiculo, valor, descricao FROM manutencao WHERE cpf = {0}'.format(cpfPesquisa))        

@@ -1,8 +1,11 @@
 import sys
+
+from utilities.relatorios import relatorios
 sys.path.append('./')
 from utilities.Menu import menu
+#from app.relatorios import relatorios
 
-def relatorios():
+def gerarRelatorios():
     opcoes_menu = [
         'Relatório geral'
         'Relatório manutenção tipo A', 
@@ -14,20 +17,24 @@ def relatorios():
         ] 
     nome = 'RELATÓRIOS'
     opcao = menu(opcoes_menu, nome)
-
+    
     if (opcao == 1):
-        relatorioGeral()
+         relatorios()
     elif (opcao == 2):
-        relatorioStatusA()
+        relatorios('WHERE status = "A"')
     elif (opcao == 3):
-        relatorioStatusM()
+        relatorios('WHERE status = "M"')
     elif (opcao == 4):
-        relatorioStatusC()
+        relatorios('WHERE status = "C"')
     elif(opcao == 5):
-        relatorioStatusF()
+        relatorios('WHERE status = "F"')
     elif(opcao == 6):
-        relatorioTotal()
+        relatorios('WHERE status = "F"')
     elif (opcao == 7):
-        relatorioCPF()
+        cpfPesquisa = menu([], 'RELATÓRIOS', 'Digite o CPF (apenas números) associados a manutenção que você deseja pesquisar: ')
+        where = 'WHERE cpf = {0}'.format(cpfPesquisa)
+        print(where)
+        relatorios(where)
     else:
         print('\n\nOpção inválida, por favor digite uma opção verdadeira.\n\n')
+

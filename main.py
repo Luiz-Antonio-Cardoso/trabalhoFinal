@@ -3,12 +3,10 @@ from app.alterarManutencao import altera_manutencao
 from app.cadastroManutencao import cadastro_manutencao 
 from app.finalizarManutencao import finaliza_manutencao
 from app.realizarManutencao import  realiza_manutencao 
-from app.relatorios import relatorios
+from app.relatorios import gerarRelatorios, relatorios
 from utilities.Menu import menu
 
 from database.createTables import criarTabela
-from utilities.exit import sair
-
 
 #criarTabela()
 
@@ -30,9 +28,10 @@ def menu_principal():
         elif(opcao == 4):
           finaliza_manutencao()
         elif(opcao == 5):
-          relatorios()
+          gerarRelatorios()
         elif (opcao == 6):
-            sair()
+            print('Saindo...')
+            op = False
         else:
             print('\n\nOpção inválida, por favor digite uma opção verdadeira.\n\n')
 

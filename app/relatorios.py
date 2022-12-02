@@ -1,6 +1,6 @@
 import sys
 
-from utilities.relatorios import relatorios
+from reports.relatorios import relatorios
 sys.path.append('./')
 from utilities.Menu import menu
 #from app.relatorios import relatorios

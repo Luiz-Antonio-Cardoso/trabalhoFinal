@@ -1,7 +1,8 @@
 import sys
-
-from reports.relatorios import relatorios
 sys.path.append('./')
+#copilot import the relatorios function from reports
+from app.reports.relatorios import relatorios
+
 from utilities.Menu import menu
 #from app.relatorios import relatorios
 

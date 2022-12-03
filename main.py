@@ -3,7 +3,7 @@ from app.alterarManutencao import altera_manutencao
 from app.cadastroManutencao import cadastro_manutencao 
 from app.finalizarManutencao import finaliza_manutencao
 from app.realizarManutencao import  realiza_manutencao 
-from app.relatorios import gerarRelatorios, relatorios
+from app.gerarRelatorios import gerarRelatorios
 from utilities.Menu import menu
 
 from database.createTables import criarTabela
@@ -26,9 +26,9 @@ def menu_principal():
         elif (opcao == 3):
             realiza_manutencao()
         elif(opcao == 4):
-          finaliza_manutencao()
+            finaliza_manutencao()
         elif(opcao == 5):
-          gerarRelatorios()
+            gerarRelatorios()
         elif (opcao == 6):
             print('Saindo...')
             op = False

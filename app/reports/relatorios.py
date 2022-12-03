@@ -16,5 +16,3 @@ def relatorios(where = ''):
     #espaçamento entre colunas
     # pd.set_option('display.width', 2000) 
     print(df)
-
-relatorios('A')

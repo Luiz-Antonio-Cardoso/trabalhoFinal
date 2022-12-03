@@ -9,7 +9,8 @@ def checa_tamanho( query ):
     for a in query:
         i += 1
 
-    if i == 1:
-        return False
-    else:
-        return True
+    return i
+    # if i == 1:
+    #     return False
+    # else:
+    #     return True

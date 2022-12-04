@@ -8,5 +8,5 @@ def menu(op = [], nome = "menu", selecao = 'Digite uma das opções: '):
             intro = [(op.index(i)+1), "-"]
             print(intro[0],intro[1], i)
     
-    opcao = int(input(selecao))
+    opcao = input(selecao)
     return opcao

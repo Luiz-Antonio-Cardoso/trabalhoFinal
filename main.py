@@ -17,7 +17,7 @@ def menu_principal():
         
         opcoes_menu = ['Cadastrar manutenção', 'Alterar manutenção', 'Realizar manutenção', 'Finalizar manutenção', 'Relatórios', 'Sair']
         nome = "MENU PRINCIPAL"
-        opcao = menu(opcoes_menu, nome)
+        opcao = int(menu(opcoes_menu, nome))
 
         if (opcao == 1):
             cadastro_manutencao()

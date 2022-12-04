@@ -1,23 +1,19 @@
 import sys
 sys.path.append('./')
 
-import database.createTables
 from utilities.formatQuery import formatQuery
 from utilities.Menu import menu
 from utilities.checaTamanho import checa_tamanho
 from utilities.checaTamanho import retorna_id
-import sqlite3
-
 
 def altera_manutencao():
-    conn = sqlite3.connect("db-oficina")
 
     nome = 'ALTERAR MANUTENÇÃO'
     
-    cpfPesquisa = int(menu([], nome, 'Digite o CPF (apenas números) associados a manutenção que você deseja pesquisar: '))
+    cpfPesquisa = menu([], nome, 'Digite o CPF (apenas números) associados a manutenção que você deseja pesquisar: ')
         
     query = conn.execute(
-            'SELECT id, nome, detalhe, tipoVeiculo, valor, descricao FROM manutencao WHERE cpf = {0}'.format(cpfPesquisa))        
+            'SELECT * FROM manutencao WHERE cpf = "{0}"'.format(cpfPesquisa))        
 
     listaManutencoesCpf = query.fetchall()
 

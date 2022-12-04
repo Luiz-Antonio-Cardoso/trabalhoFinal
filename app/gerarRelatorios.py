@@ -17,10 +17,10 @@ def gerarRelatorios():
         'Relatório de manutenções por CPF'
         ] 
     nome = 'RELATÓRIOS'
-    opcao = menu(opcoes_menu, nome)
+    opcao = int(menu(opcoes_menu, nome))
     
     if (opcao == 1):
-         relatorios()
+         relatorios('*')
     elif (opcao == 2):
         relatorios('*', 'WHERE status = "A"')
     elif (opcao == 3):

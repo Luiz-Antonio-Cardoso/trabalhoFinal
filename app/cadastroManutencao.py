@@ -25,8 +25,6 @@ def cadastro_manutencao():
     manutencao['descricao'] = input("Digite os detalhes do serviço: ")
     manutencao['dataEntrada'] = input(
         "Digite a data de entrada do veiculo (dia/mes/ano): ")
-    manutencao['dataSaida'] = input(
-        "Digite a data de saida do veiculo (dia/mes/ano): ")
     manutencao['status'] = "A"
 
     if manutencao['nome'] != '' and manutencao['cpf'] != '' and manutencao['detalhe'] != '' and manutencao['valor'] != '' and manutencao['dataEntrada'] != '':
@@ -36,6 +34,7 @@ def cadastro_manutencao():
         query = query.replace("[", "")
         query = query.replace("]", "")
         print(conn.execute(query))
+        print(query)
         print('Cadastro realizado com sucesso!')
 
         conn.commit()

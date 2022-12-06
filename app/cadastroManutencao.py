@@ -18,18 +18,17 @@ def cadastro_manutencao():
 
     manutencao['nome'] = input("Digite o nome do cliente: ")
     manutencao['cpf'] = input("Digite o cpf do cliente (Apenas numeros): ")
-    manutencao['tipoVeiculo'] = input(
-        "Digite o tipo de veiculo (C – Carro, M – Moto, O – Outro): ")
+    manutencao['tipoVeiculo'] = input("Digite o tipo de veiculo (C – Carro, M – Moto, O – Outro): ")
     manutencao['detalhe'] = input("Digite os detalhes do veiculo: ")
     manutencao['valor'] = float(input("Digite o valor do orçamento: "))
     manutencao['descricao'] = input("Digite os detalhes do serviço: ")
-    manutencao['dataEntrada'] = input(
-        "Digite a data de entrada do veiculo (dia/mes/ano): ")
+    manutencao['dataEntrada'] = input("Digite a data de entrada do veiculo (dia/mes/ano): ")
     manutencao['status'] = "A"
 
     if manutencao['nome'] != '' and manutencao['cpf'] != '' and manutencao['detalhe'] != '' and manutencao['valor'] != '' and manutencao['dataEntrada'] != '':
         query = "INSERT INTO manutencao VALUES {0}  ".format(
             manutencao.values())
+        #replaces para formatar a querie e retirar os caracteres desnecessarios
         query = query.replace("dict_values", "")
         query = query.replace("[", "")
         query = query.replace("]", "")
@@ -43,8 +42,5 @@ def cadastro_manutencao():
     else:
         cadastro = print(
             "Os campos:\n Nome,\n cpf,\n detalhe,\n valor,\n data de entrada\n são obrigatorios, tente novamente.")
-
-    selectManutencao = conn.execute("SELECT * FROM manutencao")
-    # print(selectManutencao.fetchall())
 
     return cadastro

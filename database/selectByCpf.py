@@ -12,8 +12,8 @@ def select_cpf(nome):
     cpfPesquisa = menu('',nome,'Digite o CPF (apenas números) associados a manutenção que você deseja pesquisar: ')
 
     query = ('SELECT * FROM manutencao WHERE cpf = "{0}"'.format(cpfPesquisa))
-    queryFinalizada = conn.execute(query)
+    queryFinalizada = (conn.execute(query).fetchall())
 
-    listaManutencoesCpf = [(queryFinalizada.fetchall()), cpfPesquisa, query, nome]
+    listaManutencoesCpf = [queryFinalizada, cpfPesquisa, query, nome]
 
     return listaManutencoesCpf

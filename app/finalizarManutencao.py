@@ -20,18 +20,24 @@ def finaliza_manutencao():
     #fazer a verificação se a manutenção está com status diferente de 'M'
 
     if int(checa_tamanho(listaManutencoesCpf) > 1):
+        #vai mostrar uma tabela com as manutenções e vai pedir para o usuário digitar o id da
+        #manutenção que ele deseja realizar
         df = pd.read_sql_query(query, conn)
         df.columns = ['Id','Nome', 'CPF', 'Tipo de Veiculo', 'Detalhe', 'Valor', 'Descrição', 'Data de Entrada', 'Data de Saida', 'Status']
         print(df)
 
         id = int(menu([], nome, 'Digite o ID da manutenção que você deseja realizar: '))
         update_function('F', 'id', id)
+        #funcao que vai atualizar a data de saida da manutenção
         finaliza_data(id)
         
     elif int(checa_tamanho(listaManutencoesCpf) == 1):
+        #se a lista de manutenções do cpf pesquisado for igual a 1, vai atualizar
+        #o status da manutenção para 'F'
         update_function('F', 'cpf', cpfPesquisa)
         query = conn.execute('SELECT id FROM manutencao WHERE cpf = "{0}"'.format(cpfPesquisa))
         id = query.fetchone()[0]
+        #funcao que vai atualizar a data de saida da manutenção
         finaliza_data(id)
 
     else:

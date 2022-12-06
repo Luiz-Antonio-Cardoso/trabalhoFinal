@@ -9,8 +9,6 @@ from database.selectByCpf import select_cpf
 from database.recuperaData import finaliza_data
 import pandas as pd
 
-from datetime import date
-
 def finaliza_manutencao():
 
     selectByCpf = select_cpf('FINALIZAR MANUTENÇÃO')
@@ -28,14 +26,13 @@ def finaliza_manutencao():
 
         id = int(menu([], nome, 'Digite o ID da manutenção que você deseja realizar: '))
         update_function('F', 'id', id)
+        finaliza_data(id)
+        
     elif int(checa_tamanho(listaManutencoesCpf) == 1):
         update_function('F', 'cpf', cpfPesquisa)
+        query = conn.execute('SELECT id FROM manutencao WHERE cpf = "{0}"'.format(cpfPesquisa))
+        id = query.fetchone()[0]
+        finaliza_data(id)
 
-        
     else:
         print('Não há manutenções para esse CPF')
-
-def insert_data_saida():
-    dataSaida = date.today()
-    dataSaida = finaliza_data(dataSaida)
-    return dataSaida

@@ -6,28 +6,43 @@ from utilities.Menu import menu
 from utilities.checaTamanho import checa_tamanho
 from utilities.checaTamanho import retorna_id
 
+from database.selectByCpf import select_cpf
+from database.updateFunction import *
+import pandas as pd
+from IPython.display import display
+
 def altera_manutencao():
 
-    nome = 'ALTERAR MANUTENÇÃO'
-    
-    cpfPesquisa = menu([], nome, 'Digite o CPF (apenas números) associados a manutenção que você deseja pesquisar: ')
-        
-    query = conn.execute(
-            'SELECT * FROM manutencao WHERE cpf = "{0}"'.format(cpfPesquisa))        
+    selectByCpf = select_cpf('ALTERAR MANUTENÇÃO')
 
-    listaManutencoesCpf = query.fetchall()
+    listaManutencoesCpf = selectByCpf[0]
+    cpfPesquisa = selectByCpf[1]
+    query = selectByCpf[2]
+    nome = selectByCpf[3]
 
-    if checa_tamanho(listaManutencoesCpf):
-        pos = int(menu(listaManutencoesCpf, nome))
-        id = retorna_id(listaManutencoesCpf, pos)
+    if int(checa_tamanho(listaManutencoesCpf) > 1):
+        df = pd.read_sql_query(query, conn)
+        df.columns = ['Id','Nome', 'CPF', 'Tipo de Veiculo', 'Detalhe', 'Valor', 'Descrição', 'Data de Entrada', 'Status']
+        print(df)
+
+        id = int(menu([], nome, 'Digite o ID da manutenção que você deseja alterar: '))
+        update_function('M', 'id', id),
+    elif int(checa_tamanho(listaManutencoesCpf) == 1):
+        update_function('M', 'cpf', cpfPesquisa)
     else:
-        id = retorna_id(listaManutencoesCpf, 1)
+        print('Não há manutenções para esse CPF')
 
-    query = conn.execute(
-            'SELECT detalhe, tipoVeiculo, valor, descricao, nome FROM manutencao WHERE id = {0}'.format(id))
+    # if checa_tamanho(listaManutencoesCpf):
+    #     pos = int(menu(listaManutencoesCpf, nome))
+    #     id = retorna_id(listaManutencoesCpf, pos)
+    # else:
+    #     id = retorna_id(listaManutencoesCpf, 1)
+
+    # query = conn.execute(
+    #         'SELECT detalhe, tipoVeiculo, valor, descricao, nome FROM manutencao WHERE id = {0}'.format(id))
     
-    for i in query.fetchall():
-        print(i)
+    # for i in query.fetchall():
+    #     print(i)
 
     escolha_id = ['Detalhe', 'Tipo de veiculo','Descrição', 'Valor', 'Nome']
     escolha = int(menu(escolha_id, nome, 'Escolha o que deseja alterar: '))

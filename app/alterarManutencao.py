@@ -29,10 +29,14 @@ def altera_manutencao():
         print(df)
         id = menu([],nome, 'Digite o ID da manutenção desejada.' )
 
+    #Verifica se a pesquisa tem apenas uma linha e retorna o id dessa unica linha
     elif int(checa_tamanho(listaManutencoesCpf) == 1):
         id = retorna_id(query, 1)
+    #Caso a pesquisa nao retorne nenhum resultado informa que nao 
+    #existem manutenções nesse cpf
     else:
         print('Não há manutenções para esse CPF')
+        #Da opção de voltar para o menu principal ou tentar novamente
         erro = menu(['Menu Principal', 'Tentar novamente'], nome)
         if erro == 1:
             menu_principal()
@@ -40,12 +44,13 @@ def altera_manutencao():
             altera_manutencao()
 
 
-
+    #Usuario escolhe qual campo da tabela deseja alterar
     escolha_id = ['Detalhe', 'Tipo de veiculo','Descrição', 'Valor', 'Nome']
     escolha = int(menu(escolha_id, nome, 'Escolha o que deseja alterar: '))
 
     valores = {}
 
+    #Utiliza a opção desejada para fazer a alteração 
     if (escolha == 1):
             valores['detalhe'] = input("Digite o novo detalhe do veiculo: ")
             query = conn.execute('''UPDATE manutencao SET detalhe = '{0}' WHERE id = {1}'''.format(

@@ -30,6 +30,6 @@ def finaliza_data(id):
 
     dataInicio = datetime.strptime(dataInicial, date_format)
     dataFinal = datetime.strptime(dataSaida, date_format)
-    diff = dataFinal - dataInicio
+    diferenca = abs((dataFinal - dataInicio).days)
     
-    return print('A manutenção {0} está foi finalizada com sucesso!!! Ela durou cerca de {1} dias'.format(id, (diff.days)))
+    return print('A manutenção {0} está foi finalizada com sucesso!!! Ela durou cerca de {1} dias'.format(id, (diferenca)))

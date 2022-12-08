@@ -25,13 +25,18 @@ def altera_manutencao():
     if int(checa_tamanho(listaManutencoesCpf) > 1):
         #Utiliza o pandas para mostras a tabela na tela
         df = pd.read_sql_query(query, conn)
-        df.columns = ['Id','Nome', 'CPF', 'Tipo de Veiculo', 'Detalhe', 'Valor', 'Descrição', 'Data de Entrada', 'Status']
+        df.columns = ['Id','Nome', 'CPF', 'Tipo de Veiculo', 'Detalhe', 'Valor', 'Descrição', 'Data de Entrada','Data de Saída', 'Status']
         print(df)
-        id = menu([],nome, 'Digite o ID da manutenção desejada.' )
+        id = int(menu([],nome, 'Digite a opção que deseja alterar: ' ))
+        id = retorna_id(listaManutencoesCpf, id)
 
     #Verifica se a pesquisa tem apenas uma linha e retorna o id dessa unica linha
     elif int(checa_tamanho(listaManutencoesCpf) == 1):
-        id = retorna_id(query, 1)
+        id = retorna_id(listaManutencoesCpf, 0)
+        df = pd.read_sql_query(query, conn)
+        df.columns = ['Id','Nome', 'CPF', 'Tipo de Veiculo', 'Detalhe', 'Valor', 'Descrição', 'Data de Entrada','Data de Saída', 'Status']
+        print(df)
+
     #Caso a pesquisa nao retorne nenhum resultado informa que nao 
     #existem manutenções nesse cpf
     else:

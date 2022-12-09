@@ -6,7 +6,7 @@ from utilities.Menu import menu
 from database.updateFunction import *
 from utilities.checaTamanho import checa_tamanho
 from database.selectByCpf import select_cpf
-from database.recuperaData import finaliza_data
+from database.finalizaDatas import finaliza_data
 import pandas as pd
 
 def finaliza_manutencao():
@@ -29,7 +29,7 @@ def finaliza_manutencao():
         id = int(menu([], nome, 'Digite o ID da manutenção que você deseja realizar: '))
         update_function('F', 'id', id)
         #funcao que vai atualizar a data de saida da manutenção
-        # finaliza_data(id)
+        finaliza_data(id)
         
     elif int(checa_tamanho(listaManutencoesCpf) == 1):
         #se a lista de manutenções do cpf pesquisado for igual a 1, vai atualizar
@@ -38,7 +38,7 @@ def finaliza_manutencao():
         query = conn.execute('SELECT id FROM manutencao WHERE cpf = "{0}"'.format(cpfPesquisa))
         id = query.fetchone()[0]
         #funcao que vai atualizar a data de saida da manutenção
-        # finaliza_data(id)
+        finaliza_data(id)
 
     else:
         print('Não há manutenções para esse CPF')

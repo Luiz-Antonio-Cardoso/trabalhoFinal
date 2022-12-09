@@ -23,7 +23,7 @@ def cadastro_manutencao():
     manutencao['valor'] = float(input("Digite o valor do orçamento: "))
     manutencao['descricao'] = input("Digite os detalhes do serviço: ")
     manutencao['dataEntrada'] = input("Digite a data de entrada do veiculo (dia/mes/ano): ")
-    manutencao['dataSaida'] = '10-10-2010'
+    manutencao['dataSaida'] = '0'
     manutencao['status'] = "A"
 
     if manutencao['nome'] != '' and manutencao['cpf'] != '' and manutencao['detalhe'] != '' and manutencao['valor'] != '' and manutencao['dataEntrada'] != '':

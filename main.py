@@ -8,7 +8,7 @@ from utilities.Menu import menu
 
 from database.createTables import criarTabela
 
-# criarTabela()
+#criarTabela()
 
 def menu_principal():   
 

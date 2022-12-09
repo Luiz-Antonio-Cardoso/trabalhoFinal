@@ -19,7 +19,12 @@ def finaliza_data(id):
 
     
     dataSaida = date.today()
-    date_format = "%m/%d/%Y"
+
+    dataSaida = str(dataSaida)
+    dataSaida = dataSaida.split('-')
+    dataSaida = dataSaida[2] + '/' + dataSaida[1] + '/' + dataSaida[0]
+
+    date_format = "%d/%m/%Y"
 
     query = conn.execute('''SELECT dataEntrada FROM manutencao WHERE id = {0}'''.format(id))
 
